@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ride. — Book your trip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/app.css?v=20260406" />
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- ── NAV ── -->
+    <nav>
+      <div class="nav-logo">ride<span>.</span></div>
+      <div class="nav-links">
+        <a href="#" class="active">Book</a>
+        <a href="#">My trips</a>
+        <a href="#">Activity</a>
+        <a href="#">Help</a>
+      </div>
+      <div class="nav-user">
+        <div class="nav-avatar">AR</div>
+        <span class="nav-name">Adhikari R.</span>
+      </div>
+    </nav>
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar">
+      <div class="sidebar-title">Where are<br>you <span>going?</span></div>
+
+      <!-- Route inputs -->
+      <div>
+        <div class="section-label">your route</div>
+        <div class="location-block">
+          <div class="loc-row">
+            <div class="loc-dot from"></div>
+            <input class="loc-input" id="pickupInput" placeholder="Pickup location" value="98/3, Nidahas Mavtha, Veyngoda" />
+          </div>
+          <div class="loc-row">
+            <div class="loc-dot to"></div>
+            <input class="loc-input" id="dropoffInput" placeholder="Where to?" value="Colombo Fort Railway Station" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Ride type grid -->
+      <div>
+        <div class="section-label">choose ride</div>
+        <div class="ride-grid" id="rideGrid">
+          <div class="ride-card active" data-type="UberX" data-price="18.50" data-eta="3">
+            <div class="ride-icon">🚗</div>
+            <div class="ride-name">UberX</div>
+            <div class="ride-price">$18.50</div>
+            <div class="ride-eta">3 min</div>
+            <div class="popular-badge">Popular</div>
+          </div>
+          <div class="ride-card" data-type="UberXL" data-price="26.00" data-eta="5">
+            <div class="ride-icon">🚙</div>
+            <div class="ride-name">UberXL</div>
+            <div class="ride-price">$26.00</div>
+            <div class="ride-eta">5 min</div>
+          </div>
+          <div class="ride-card" data-type="Comfort" data-price="22.75" data-eta="4">
+            <div class="ride-icon">💺</div>
+            <div class="ride-name">Comfort</div>
+            <div class="ride-price">$22.75</div>
+            <div class="ride-eta">4 min</div>
+          </div>
+          <div class="ride-card" data-type="Black" data-price="48.00" data-eta="7">
+            <div class="ride-icon">🖤</div>
+            <div class="ride-name">Black</div>
+            <div class="ride-price">$48.00</div>
+            <div class="ride-eta">7 min</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment -->
+      <div>
+        <div class="section-label">payment</div>
+        <div class="payment-row">
+          <div class="payment-left">
+            <div class="card-chip">
+              <svg width="20" height="14" viewBox="0 0 20 14" fill="none">
+                <rect x="2" y="4" width="16" height="6" rx="1" fill="rgba(255,255,255,0.5)"/>
+                <rect x="2" y="4" width="7" height="6" rx="1" fill="rgba(255,255,255,0.3)"/>
+              </svg>
+            </div>
+            <div>
+              <div class="payment-name">Visa •••• 4821</div>
+              <div class="payment-sub">Default card</div>
+            </div>
+          </div>
+          <div class="promo-badge">10% off</div>
+        </div>
+      </div>
+
+      <!-- Book button -->
+      <button class="book-btn" id="bookBtn">
+        <span>Confirm booking</span>
+        <span class="btn-accent" id="btnPrice">— $18.50</span>
+      </button>
+
+      <!-- Status message -->
+      <div id="statusMsg" class="status-msg hidden"></div>
+    </aside>
+
+    <!-- ── MAP ── -->
+    <main class="map-area">
+      <!-- Inline SVG map -->
+      <svg class="map-svg" viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <rect width="900" height="700" fill="#e8efe8"/>
+        <g stroke="#d0dbd0" stroke-width="1" fill="none" opacity="0.8">
+          <line x1="0" y1="140" x2="900" y2="140"/><line x1="0" y1="280" x2="900" y2="280"/>
+          <line x1="0" y1="420" x2="900" y2="420"/><line x1="0" y1="560" x2="900" y2="560"/>
+          <line x1="150" y1="0" x2="150" y2="700"/><line x1="300" y1="0" x2="300" y2="700"/>
+          <line x1="450" y1="0" x2="450" y2="700"/><line x1="600" y1="0" x2="600" y2="700"/>
+          <line x1="750" y1="0" x2="750" y2="700"/>
+        </g>
+        <g fill="none">
+          <line x1="0" y1="350" x2="900" y2="350" stroke="#c8d8c8" stroke-width="14"/>
+          <line x1="380" y1="0" x2="380" y2="700" stroke="#c8d8c8" stroke-width="14"/>
+          <line x1="0" y1="200" x2="900" y2="200" stroke="#d4dcd4" stroke-width="8"/>
+          <line x1="220" y1="0" x2="220" y2="700" stroke="#d4dcd4" stroke-width="8"/>
+          <line x1="560" y1="0" x2="560" y2="700" stroke="#d4dcd4" stroke-width="8"/>
+        </g>
+        <rect x="30"  y="30"  width="110" height="90" rx="6" fill="#dce9dc" opacity="0.7"/>
+        <rect x="170" y="30"  width="90"  height="90" rx="6" fill="#dce9dc" opacity="0.6"/>
+        <rect x="420" y="30"  width="110" height="90" rx="6" fill="#dce9dc" opacity="0.7"/>
+        <rect x="610" y="30"  width="120" height="90" rx="6" fill="#dce9dc" opacity="0.6"/>
+        <rect x="30"  y="240" width="150" height="80" rx="6" fill="#dce9dc" opacity="0.7"/>
+        <rect x="420" y="240" width="110" height="80" rx="6" fill="#dce9dc" opacity="0.7"/>
+        <rect x="610" y="240" width="120" height="80" rx="6" fill="#dce9dc" opacity="0.6"/>
+        <rect x="30"  y="390" width="150" height="110" rx="6" fill="#dce9dc" opacity="0.7"/>
+        <rect x="240" y="390" width="110" height="110" rx="6" fill="#dce9dc" opacity="0.7"/>
+        <rect x="420" y="390" width="110" height="110" rx="6" fill="#dce9dc" opacity="0.7"/>
+        <rect x="610" y="390" width="120" height="110" rx="6" fill="#dce9dc" opacity="0.6"/>
+        <rect x="30"  y="580" width="150" height="90" rx="6" fill="#dce9dc" opacity="0.7"/>
+        <rect x="420" y="580" width="110" height="90" rx="6" fill="#dce9dc" opacity="0.7"/>
+        <rect x="610" y="580" width="120" height="90" rx="6" fill="#dce9dc" opacity="0.6"/>
+        <polyline points="310,490 310,350 560,350 560,120" fill="none" stroke="#3a86ff" stroke-width="4" stroke-dasharray="10,5" stroke-linecap="round" opacity="0.85"/>
+        <circle cx="310" cy="490" r="10" fill="#0a0a0a" stroke="white" stroke-width="3"/>
+        <circle cx="560" cy="120" r="10" fill="#3a86ff" stroke="white" stroke-width="3"/>
+        <circle cx="560" cy="120" r="20" fill="#3a86ff" opacity="0.15"/>
+        <g id="driverCar" transform="translate(290,380)">
+          <rect x="-14" y="-8" width="28" height="16" rx="4" fill="#c8f135" stroke="#a8d020" stroke-width="1"/>
+          <circle cx="-8" cy="8" r="3" fill="#0a0a0a"/>
+          <circle cx="8"  cy="8" r="3" fill="#0a0a0a"/>
+        </g>
+        <g transform="translate(400,345)" opacity="0.5">
+          <rect x="-10" y="-6" width="20" height="12" rx="3" fill="#aaa"/>
+          <circle cx="-6" cy="6" r="2.5" fill="#555"/><circle cx="6" cy="6" r="2.5" fill="#555"/>
+        </g>
+        <g transform="translate(310,430)" opacity="0.4">
+          <rect x="-10" y="-6" width="20" height="12" rx="3" fill="#aaa"/>
+          <circle cx="-6" cy="6" r="2.5" fill="#555"/><circle cx="6" cy="6" r="2.5" fill="#555"/>
+        </g>
+      </svg>
+
+      <!-- Stats bar -->
+      <div class="stats-bar">
+        <div class="stat-pill">
+          <div class="stat-dot green"></div>
+          <span class="stat-label">Drivers nearby</span>
+          <span class="stat-val">12</span>
+        </div>
+        <div class="stat-pill">
+          <div class="stat-dot blue"></div>
+          <span class="stat-label">Distance</span>
+          <span class="stat-val">12.4 mi</span>
+        </div>
+        <div class="stat-pill">
+          <div class="stat-dot orange"></div>
+          <span class="stat-label">Surge</span>
+          <span class="stat-val">1.2×</span>
+        </div>
+      </div>
+
+      <!-- Driver card -->
+      <div class="driver-card-map">
+        <div class="driver-header">
+          <div class="driver-avatar" id="mapDriverAvatar" style="background:#c8f135;">PK</div>
+          <div class="driver-details">
+            <div class="driver-name" id="mapDriverName">Pradeep Kumara</div>
+            <div class="driver-title" id="mapDriverCar">Toyota Camry · Silver</div>
+          </div>
+          <div class="driver-rating">
+            <span class="star-icon">★</span>
+            <span id="mapDriverRating">4.92</span>
+          </div>
+        </div>
+        <div class="driver-meta">
+          <div class="driver-meta-item"><div class="meta-key">Plate</div><div class="meta-val" id="mapPlate">KZT-4821</div></div>
+          <div class="driver-meta-item"><div class="meta-key">ETA</div><div class="meta-val" id="mapEta">3 min</div></div>
+          <div class="driver-meta-item"><div class="meta-key">Trips</div><div class="meta-val" id="mapTrips">2,847</div></div>
+          <div class="driver-meta-item"><div class="meta-key">License</div><div class="meta-val" id="mapLicense">NY-DRV-881</div></div>
+        </div>
+        <div class="driver-actions">
+          <button class="action-btn">📞 Call</button>
+          <button class="action-btn">💬 Message</button>
+          <button class="action-btn primary" id="trackBtn">Track</button>
+        </div>
+      </div>
+    </main>
+
+  </div><!-- /app-shell -->
+
+  <!-- ── CONFIRMATION MODAL ── -->
+  <div class="confirmed-overlay" id="confirmedOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="confirmed-modal">
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      <div class="modal-badge">✓ Ride confirmed</div>
+      <div class="modal-title" id="modalTitle">You're all set!</div>
+      <div class="modal-sub" id="modalSub">Your driver is on the way.</div>
+      <div class="modal-conf" id="modalConf">CONF: ——</div>
+      <div class="modal-stats">
+        <div class="modal-stat"><div class="modal-stat-val" id="mFare">—</div><div class="modal-stat-key">Total fare</div></div>
+        <div class="modal-stat"><div class="modal-stat-val" id="mEta">—</div><div class="modal-stat-key">Driver ETA</div></div>
+        <div class="modal-stat"><div class="modal-stat-val" id="mDuration">—</div><div class="modal-stat-key">Trip time</div></div>
+      </div>
+      <div class="modal-driver">
+        <div class="modal-driver-avatar" id="mAvatar" style="background:#c8f135;">MA</div>
+        <div>
+          <div class="modal-driver-name" id="mDriverName">—</div>
+          <div class="modal-driver-sub" id="mDriverCar">—</div>
+        </div>
+        <div class="modal-driver-eta">
+          <div class="modal-driver-eta-val" id="mEtaVal">—</div>
+          <div class="modal-driver-eta-key">away</div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-btn" id="cancelRideBtn">Cancel ride</button>
+        <button class="modal-btn primary" id="doneBtn">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/app.js?v=20260406"></script>
+</body>
+</html>
