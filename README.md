@@ -83,12 +83,11 @@ Databricks processes both streaming and batch data using PySpark. Data cleansing
 4. Modeling Layer
 
 Processed data is transformed into a star schema for efficient querying and reporting.
+![alt text](<Screenshot 2026-04-04 184655.png>)
 
 5. Analytics Layer
 
 The dashboard visualizes key metrics and trends from the curated analytical dataset.
-
-![alt text](<Screenshot 2026-04-04 184655.png>)
 
 Example Analytics
 
