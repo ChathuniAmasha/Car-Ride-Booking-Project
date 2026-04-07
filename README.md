@@ -91,7 +91,7 @@ The dashboard visualizes key metrics and trends from the curated analytical data
 
 Example Analytics
 
-The dashboard can be used to analyze:
+## The dashboard can be used to analyze:
 
 Passenger count by pickup city
 Total fare by vehicle
@@ -100,7 +100,7 @@ Payment method distribution
 Distance and trip activity trends
 Operational ride patterns
 
-Learning Outcomes
+## Learning Outcomes
 
 This project helped strengthen practical knowledge in:
 
@@ -112,7 +112,7 @@ creating business dashboards from curated datasets
 integrating multiple Azure services into one workflow
 Future Improvements
 
-Possible enhancements for this project include:
+## Possible enhancements for this project include:
 
 real-time dashboard refresh
 automated pipeline scheduling
